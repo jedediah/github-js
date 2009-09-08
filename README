@@ -1,0 +1,18 @@
+// This is (or will be) a pure JavaScript, OOPish wrapper for the GitHub API.
+// It uses dynamic script tags for AJAX so it has no cross-domain limitations.
+// This is roughly what the code will look like:
+
+var gh = new GitHub.API('username','GFwregWH5g39fFefj04fFfdjf948f');   // account and API token
+
+var me = gh.user();                        // User object for the authenticated account
+var you = gh.user('bob');                  // User object for someone else
+
+// Results are passed to your callback as JS objects, with optional context.
+// Some objects are wrapped, others are just plain structures.
+me.profile(function(json) { ... }, this);
+gh.userSearch('melvin',function(json) { ... });
+
+var myProj = me.repo('doomlaser');      // Repo object
+var bugReport = myProj.issue(147);      // Issue object
+
+// Other objects: Commit, Tree, Blob, Network (the "secret" one)
